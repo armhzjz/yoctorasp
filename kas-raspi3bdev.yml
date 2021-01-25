@@ -3,7 +3,7 @@ header:
 
 repos:
   meta-raspidev:
-    url: git@github.com:armhzjz/meta-raspidev.git
+    url: https://github.com/armhzjz/meta-raspidev.git
     refspec: master
     layers:
       meta-raspi3b64dev
