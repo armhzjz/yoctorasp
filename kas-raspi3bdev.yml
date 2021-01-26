@@ -6,4 +6,4 @@ repos:
     url: https://github.com/armhzjz/meta-raspidev.git
     refspec: master
     layers:
-      meta-raspi3b64dev
+      meta-raspi3b64dev:
