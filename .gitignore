@@ -1,0 +1,8 @@
+build/
+meta-openembedded/
+meta-qt5/
+meta-raspberrypi/
+meta-raspidev/
+poky/
+yocto/
+
