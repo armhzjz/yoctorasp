@@ -3,15 +3,15 @@
 set -e
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
-IMAGE=$(grep "machine:" ${SCRIPT_DIR}/kas-projSetup.yml)
-TARGET=$(grep " - " ${SCRIPT_DIR}/kas-projSetup.yml)
-
+PROJ_DIR=${SCRIPT_DIR}/..
+IMAGE=$(grep "machine:" ${PROJ_DIR}/kas-projSetup.yml)
+TARGET=$(grep " - " ${PROJ_DIR}/kas-projSetup.yml)
 # check if the build is ready for this setup to be set
-if [ ! -d ${SCRIPT_DIR}/build/tmp/deploy/images/${IMAGE##*\ } ]; then
+if [ ! -d ${PROJ_DIR}/build/tmp/deploy/images/${IMAGE##*\ } ]; then
     echo "Image must be built first. Cannot continue."
     echo "Exiting."
     exit 1
-elif [ ! -d ${SCRIPT_DIR}/build/tmp/work/${IMAGE##*\ }-poky-linux/${TARGET##*\ }/1.0-r0/rootfs ]; then
+elif [ ! -d ${PROJ_DIR}/build/tmp/work/${IMAGE##*\ }-poky-linux/${TARGET##*\ }/1.0-r0/rootfs ]; then
     echo "Image must be built first. rootfs folder now found."
     echo "Cannot continue."
     echo "Exiting."
@@ -36,7 +36,7 @@ sed -e 's/#service tftp definition/service tftp\
 }/' \
     /etc/xinetd.conf.in > /etc/xinetd.conf
 # prepare thet /tftpserver directory
-ln -s ${SCRIPT_DIR}/build/tmp/deploy/images/${IMAGE##*\ } /tftpserver
+ln -s ${PROJ_DIR}/build/tmp/deploy/images/${IMAGE##*\ } /tftpserver
 
 # start the xinetd service
 bash /etc/rc.d/rc.xinetd start
@@ -44,11 +44,11 @@ bash /etc/rc.d/rc.xinetd start
 # create rootfs directory for nfs export
 # (loot at /etc/exports or execute exportfs to see which shares are being
 # shared)
-if [ -d ${SCRIPT_DIR}/rootfs ]; then
-    rm -fr ${SCRIPT_DIR}/rootfs
+if [ -d ${PROJ_DIR}/rootfs ]; then
+    rm -fr ${PROJ_DIR}/rootfs
 fi
-cp -fr ${SCRIPT_DIR}/build/tmp/work/${IMAGE##*\ }-poky-linux/${TARGET##*\ }/1.0-r0/rootfs ${SCRIPT_DIR}
-ln -s ${SCRIPT_DIR}/rootfs /rootfs
+cp -fr ${PROJ_DIR}/build/tmp/work/${IMAGE##*\ }-poky-linux/${TARGET##*\ }/1.0-r0/rootfs ${PROJ_DIR}
+ln -s ${PROJ_DIR}/rootfs /rootfs
 chown -R root:root /rootfs
 
 # prepare exports file
@@ -71,5 +71,5 @@ bash /etc/rc.d/rc.dnsmasq start
 if [ ! -d ${HOME}/bin ]; then
     mkdir -p ${HOME}/bin
 fi
-cat ${SCRIPT_DIR}/dev_setup_files/shutdown_task.sh >> ${HOME}/bin/shutdown_task.sh
+cat ${SCRIPT_DIR}/shutdown_task.sh >> ${HOME}/bin/shutdown_task.sh
 chmod 100 ${HOME}/bin/shutdown_task.sh
