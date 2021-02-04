@@ -2,6 +2,10 @@
 
 set -e
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+FILENAME=$(basename "$0")
+THISFILE="${SCRIPT_DIR}/${FILENAME}"
+
 # stop development services
 bash /etc/rc.d/rc.xinetd stop
 bash /etc/rc.d/rc.nfsd stop
@@ -15,4 +19,8 @@ bash /etc/rc.d/rc.dnsmasq stop
 
 # remove softlinks to nfs and tftp servers created by the development scripts
 rm -fr /tftpserver
-rm -fr /rootfs
+rm -fr /fsrootfs
+
+# change this file's permissions to 766 so tha it can be deleted when powering
+# off
+chmod +wr ${THISFILE}
