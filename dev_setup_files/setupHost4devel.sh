@@ -55,8 +55,7 @@ bash /etc/rc.d/rc.xinetd start
 if [ -d ${PROJ_DIR}/rootfs ]; then
     rm -fr ${PROJ_DIR}/rootfs
 fi
-cp -fr "${PROJ_DIR}/build/tmp/work/$(sed 's/-/_/g' <<< ${IMAGE##*\ })-poky-linux/${TARGET##*\ }/1.0-r0/rootfs" ${PROJ_DIR}
-ln -s ${PROJ_DIR}/rootfs /fsrootfs
+cp -fr "${PROJ_DIR}/build/tmp/work/$(sed 's/-/_/g' <<< ${IMAGE##*\ })-poky-linux/${TARGET##*\ }/1.0-r0/rootfs" /fsrootfs
 chown -R root:root /fsrootfs
 
 # prepare exports file
