@@ -7,10 +7,10 @@ FILENAME=$(basename "$0")
 THISFILE="${SCRIPT_DIR}/${FILENAME}"
 
 # stop development services
-bash /etc/rc.d/rc.xinetd stop
-bash /etc/rc.d/rc.nfsd stop
-bash /etc/rc.d/rc.rpc stop
-bash /etc/rc.d/rc.dnsmasq stop
+bash /etc/rc.d/rc.xinetd stop > /dev/null
+bash /etc/rc.d/rc.nfsd stop > /dev/null
+bash /etc/rc.d/rc.rpc stop > /dev/null
+bash /etc/rc.d/rc.dnsmasq stop > /dev/null
 
 # remove files created for development purposes
 [ -f /etc/xinetd.conf ] && rm /etc/xinetd.conf
