@@ -6,13 +6,21 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 PROJ_DIR=${SCRIPT_DIR}/..
 IMAGE=$(grep "machine:" ${PROJ_DIR}/kas-projSetup.yml)
 TARGET=$(grep " - " ${PROJ_DIR}/kas-projSetup.yml)
+
+if [[ -z $IMAGE && -z $TARGET ]]; then
+    echo "No Image or Target detected."
+    echo "Cannot continue."
+    echo "Exiting."
+    exit 1
+fi
+
 # check if the build is ready for this setup to be set
-if [ ! -d ${PROJ_DIR}/build/tmp/deploy/images/${IMAGE##*\ } ]; then
+if [ ! -d "${PROJ_DIR}/build/tmp/deploy/images/${IMAGE##*\ }" ]; then
     echo "Image must be built first. Cannot continue."
     echo "Exiting."
     exit 1
-elif [ ! -d ${PROJ_DIR}/build/tmp/work/${IMAGE##*\ }-poky-linux/${TARGET##*\ }/1.0-r0/rootfs ]; then
-    echo "Image must be built first. rootfs folder now found."
+elif [ ! -d "${PROJ_DIR}/build/tmp/work/$(sed 's/-/_/g' <<< ${IMAGE##*\ })-poky-linux/${TARGET##*\ }/1.0-r0/rootfs" ]; then
+    echo "Image must be built first. rootfs folder not found."
     echo "Cannot continue."
     echo "Exiting."
     exit 1
@@ -47,12 +55,12 @@ bash /etc/rc.d/rc.xinetd start
 if [ -d ${PROJ_DIR}/rootfs ]; then
     rm -fr ${PROJ_DIR}/rootfs
 fi
-cp -fr ${PROJ_DIR}/build/tmp/work/${IMAGE##*\ }-poky-linux/${TARGET##*\ }/1.0-r0/rootfs ${PROJ_DIR}
-ln -s ${PROJ_DIR}/rootfs /rootfs
-chown -R root:root /rootfs
+cp -fr "${PROJ_DIR}/build/tmp/work/$(sed 's/-/_/g' <<< ${IMAGE##*\ })-poky-linux/${TARGET##*\ }/1.0-r0/rootfs" ${PROJ_DIR}
+ln -s ${PROJ_DIR}/rootfs /fsrootfs
+chown -R root:root /fsrootfs
 
 # prepare exports file
-sed -e 's/#\/share *(rw,sync,no_root_squash,no_subtree_check)/\/rootfs 192.168.180.0\/24(rw,sync,no_root_squash,no_subtree_check)' \
+sed -e 's/#dev_share_here/\/fsrootfs 192.168.180.0\/24(rw,sync,no_root_squash,no_subtree_check)/' \
     /etc/exports.in > /etc/exports
 
 ## restart rpc and nfsd services
@@ -71,5 +79,6 @@ bash /etc/rc.d/rc.dnsmasq start
 if [ ! -d ${HOME}/bin ]; then
     mkdir -p ${HOME}/bin
 fi
-cat ${SCRIPT_DIR}/shutdown_task.sh >> ${HOME}/bin/shutdown_task.sh
-chmod 100 ${HOME}/bin/shutdown_task.sh
+cp ${SCRIPT_DIR}/shutdown_task.sh /home/eindemwort/bin/shutdown_task.sh
+chmod 100 /home/eindemwort/bin/shutdown_task.sh
+chown 1000:100 /home/eindemwort/bin/shutdown_task.sh
