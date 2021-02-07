@@ -24,3 +24,5 @@ rm -fr /fsrootfs
 # change this file's permissions to 766 so tha it can be deleted when powering
 # off
 chmod +wr ${THISFILE}
+
+echo $((81))
