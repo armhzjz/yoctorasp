@@ -28,8 +28,9 @@ fi
 
 # insert temporas input and output rules in iptables
 # to enable my device access tftp and nfs servers in the host
-iptables -A INPUT -s 192.168.180.1/24 -j ACCEPT
+iptables -A INPUT -i eth3 -s 192.168.180.1/24 -j ACCEPT
 iptables -A OUTPUT -d 192.168.180.1/24 -j ACCEPT
+iptables -A INPUT -i eth3 -p udp --dport 67:68 --sport 67:68 -j ACCEPT
 
 # prepare xinetd.conf file
 sed -e 's/#service tftp definition/service tftp\
