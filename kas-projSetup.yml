@@ -8,7 +8,7 @@ target:
 
 repos:
   poky:
-    url: git://git.yoctoproject.org/poky
+    url: https://git.yoctoproject.org/git/poky
     refspec: master
     layers:
       meta:
@@ -16,7 +16,7 @@ repos:
       meta-yocto-bsp:
 
   meta-openembedded:
-    url: git://git.openembedded.org/meta-openembedded
+    url: https://git.openembedded.org/meta-openembedded
     refspec: master
     layers:
       meta-oe:
