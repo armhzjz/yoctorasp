@@ -53,15 +53,25 @@ local_conf_header:
     BOOT_DELAY_MS = "100"
     DISABLE_RPI_BOOT_LOGO = "1"
     DISABLE_SPLASH = "1"
+  rpi_extra_configuration: |
     RPI_EXTRA_CONFIG = '\n\
     # Raspberry Pi 7\" display/touch screen\n \
     lcd_rotate=2\n \
     '
+  bb_diskmonitoring_dirs: |
+    BB_DISKMON_DIRS ??= "\
+        STOPTASKS,${TMPDIR},1G,100K \
+        STOPTASKS,${DL_DIR},1G,100K \
+        STOPTASKS,${SSTATE_DIR},1G,100K \
+        STOPTASKS,/tmp,100M,100K \
+        ABORT,${TMPDIR},100M,1K \
+        ABORT,${DL_DIR},100M,1K \
+        ABORT,${SSTATE_DIR},100M,1K \
+        ABORT,/tmp,10M,1K"
   debug_tweaks: |
     EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
-  downloads: |
+  downloads_and_sstate: |
     DL_DIR = "/workdir/yocto/downloads"
-  sstate: |
     SSTATE_DIR = "/workdir/yocto/sstate-cache"
   uart: |
     ENABLE_UART = "1"
