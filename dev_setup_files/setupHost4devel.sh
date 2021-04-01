@@ -45,6 +45,7 @@ sed -e 's/#service tftp definition/service tftp\
 }/' \
     /etc/xinetd.conf.in > /etc/xinetd.conf
 # prepare thet /tftpserver directory
+[[ -L "/tftpserver"  ]] && rm /tftpserver
 ln -s ${PROJ_DIR}/build/tmp/deploy/images/${IMAGE##*\ } /tftpserver
 
 # start the xinetd service
