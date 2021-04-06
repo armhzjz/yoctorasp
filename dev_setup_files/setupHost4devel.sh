@@ -1,14 +1,14 @@
 #!/bin/bash
 
-set -e
-
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 PROJ_DIR=${SCRIPT_DIR}/..
+DISTRO=$(grep "distro:" ${PROJ_DIR}/kas-projSetup.yml)
 IMAGE=$(grep "machine:" ${PROJ_DIR}/kas-projSetup.yml)
 TARGET=$(grep " - " ${PROJ_DIR}/kas-projSetup.yml)
 
-if [[ -z $IMAGE && -z $TARGET ]]; then
-    echo "No Image or Target detected."
+
+if [[ -z "${IMAGE}" || -z "${TARGET}" || -z "${DISTRO}" ]]; then
+    echo "No Image or Target or Distro detected."
     echo "Cannot continue."
     echo "Exiting."
     exit 1
@@ -19,7 +19,7 @@ if [ ! -d "${PROJ_DIR}/build/tmp/deploy/images/${IMAGE##*\ }" ]; then
     echo "Image must be built first. Cannot continue."
     echo "Exiting."
     exit 1
-elif [ ! -d "${PROJ_DIR}/build/tmp/work/$(sed 's/-/_/g' <<< ${IMAGE##*\ })-poky-linux/${TARGET##*\ }/1.0-r0/rootfs" ]; then
+elif [ ! -d "${PROJ_DIR}/build/tmp/work/$(sed 's/-/_/g' <<< ${IMAGE##*\ })-${DISTRO##*-}-linux/${TARGET##*\ }/1.0-r0/rootfs" ]; then
     echo "Image must be built first. rootfs folder not found."
     echo "Cannot continue."
     echo "Exiting."
@@ -57,7 +57,7 @@ bash /etc/rc.d/rc.xinetd start
 if [ -d ${PROJ_DIR}/rootfs ]; then
     rm -fr ${PROJ_DIR}/rootfs
 fi
-cp -fr "${PROJ_DIR}/build/tmp/work/$(sed 's/-/_/g' <<< ${IMAGE##*\ })-poky-linux/${TARGET##*\ }/1.0-r0/rootfs" /fsrootfs
+cp -fr "${PROJ_DIR}/build/tmp/work/$(sed 's/-/_/g' <<< ${IMAGE##*\ })-${DISTRO##*-}-linux/${TARGET##*\ }/1.0-r0/rootfs" /fsrootfs
 chown -R root:root /fsrootfs
 
 # prepare exports file
