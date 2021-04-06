@@ -7,3 +7,13 @@ repos:
     refspec: master
     layers:
       meta-raspi3b64dev:
+
+local_conf_header:
+  dev configs: |
+    EXTRA_IMAGE_FEATURES ?= "debug-tweaks ssh-server-dropbear"
+    RPI_USE_U_BOOT = "1"
+    BOOT_DELAY_MS = "100"
+    ### uart
+    ENABLE_UART = "1"
+    ### usefull packages on during development
+    IMAGE_INSTALL_append = " systemd-analyze htop"
