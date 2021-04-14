@@ -22,7 +22,7 @@ inherit cmake
 
 do_install_append() {
     install -d ${D}${sysconfdir}/mini_x
-    install -m 0755 ${WORKDIR}/session ${D}${sysconfdir}/
+    install -m 0755 ${WORKDIR}/session ${D}${sysconfdir}/mini_x/
 }
 
 # Specify any options you want to pass to cmake using EXTRA_OECMAKE:
