@@ -5,7 +5,10 @@ HOMEPAGE = "https://github.com/armhzjz/minesweeper-in-wxwidgets"
 LICENSE = "Unlicense"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=d88e9e08385d2a17052dac348bde4bc1"
 
-SRC_URI = "git://github.com/armhzjz/minesweeper-in-wxwidgets.git;protocol=https;branch=master"
+SRC_URI = " \
+           git://github.com/armhzjz/minesweeper-in-wxwidgets.git;protocol=https;branch=master \
+           file://session \
+"
 
 # Modify these as desired
 PV = "0.1+git${SRCPV}"
@@ -17,6 +20,10 @@ DEPENDS = "boost wxwidgets"
 
 inherit cmake
 
+do_install_append() {
+    install -d ${D}${sysconfdir}/mini_x
+    install -m 0755 ${WORKDIR}/session ${D}${sysconfdir}/
+}
+
 # Specify any options you want to pass to cmake using EXTRA_OECMAKE:
 EXTRA_OECMAKE = ""
-
