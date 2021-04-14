@@ -4,7 +4,7 @@ header:
 machine: raspberrypi3-64
 distro: ml-hzjz
 target:
-  - ml-portfolio
+  - sample-image
 
 repos:
   poky:
