@@ -1,4 +1,4 @@
-SUMMARY = "Sample image thatruns minesweeper at boot up"
+SUMMARY = "Sample image that runs minesweeper at boot up"
 LICENSE = "MIT"
 
 inherit core-image extrausers
