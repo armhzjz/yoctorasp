@@ -1,4 +1,4 @@
-SUMMARY = "My ML portfolio on an embedded device"
+SUMMARY = "Sample image thatruns minesweeper at boot up"
 LICENSE = "MIT"
 
 inherit core-image extrausers
