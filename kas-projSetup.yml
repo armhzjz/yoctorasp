@@ -4,7 +4,7 @@ header:
 machine: raspberrypi3-64
 distro: ml-hzjz
 target:
-  - sample-image
+  - sample-application
 
 repos:
   poky:
@@ -31,6 +31,24 @@ repos:
   
   meta-qt5:
     url: https://github.com/meta-qt5/meta-qt5/
+    refspec: gatesgarth
+  
+  meta-browser:
+    url: https://github.com/OSSystems/meta-browser.git
+    refspec: 49beed91f2abd4f74eb5b1f73c9546fb12fa1a32
+    layers:
+      meta-chromium:
+
+  meta-clang:
+    url: https://github.com/kraj/meta-clang.git
+    refspec: gatesgarth
+
+  meta-rust:
+    url: https://github.com/meta-rust/meta-rust.git
+    refspec: master
+
+  meta-python2:
+    url: git://git.openembedded.org/meta-python2.git
     refspec: gatesgarth
 
   meta-demos:
