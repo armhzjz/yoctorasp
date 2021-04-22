@@ -3,7 +3,11 @@ LICENSE = "MIT"
 
 inherit core-image extrausers
 
-IMAGE_INSTALL_append = " packagegroup-demos-x11-minibase minesweeper"
+IMAGE_INSTALL_append = " \
+                        packagegroup-demos-x11-minibase \
+                        minesweeper \
+                        linux-firmware-rpidistro-bcm43430 \
+                        "
 SYSTEMD_DEFAULT_TARGET="graphical.target"
 IMAGE_FEATURES_append = " \
                         ${EXTRA_IMAGE_FEATURES} \
