@@ -48,7 +48,7 @@ repos:
     refspec: master
 
   meta-python2:
-    url: git://git.openembedded.org/meta-python2.git
+    url: https://git.openembedded.org/meta-python2
     refspec: gatesgarth
 
   meta-demos:
