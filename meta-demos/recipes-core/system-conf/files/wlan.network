@@ -1,5 +1,6 @@
 [Match]
 Name=wlan*
+KernelCommandLine=!nfsroot
 
 [Network]
 DHCP=v4
