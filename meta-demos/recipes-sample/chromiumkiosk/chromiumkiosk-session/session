@@ -1,0 +1,10 @@
+#!/bin/sh
+
+xset s off >/dev/null 2>&1
+xset -dpms >/dev/null 2>&1
+xset s noblank >/dev/null 2>&1
+
+xrand -s 1024x768
+
+matchbox-window-manager -use_titlebar no -use_cursor no &
+su -l -c "/usr/bin/chromium --user-data-dir=/tmp --disable-session-crashed-bubble --disable-infobars --noerrdialogs --disable-restore-background-contents --disable-translate --disable-new-tab-first-run http://www.google.de" pfol
