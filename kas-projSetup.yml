@@ -26,7 +26,7 @@ repos:
       meta-perl:
 
   meta-raspberrypi:
-    url: https://github.com/agherzan/meta-raspberrypi.git
+    url: https://github.com/agherzan/meta-raspberrypi
     refspec: gatesgarth
   
   meta-qt5:
@@ -34,22 +34,30 @@ repos:
     refspec: gatesgarth
   
   meta-browser:
-    url: https://github.com/OSSystems/meta-browser.git
+    url: https://github.com/OSSystems/meta-browser
     refspec: 49beed91f2abd4f74eb5b1f73c9546fb12fa1a32
     layers:
       meta-chromium:
 
   meta-clang:
-    url: https://github.com/kraj/meta-clang.git
+    url: https://github.com/kraj/meta-clang
     refspec: gatesgarth
 
   meta-rust:
-    url: https://github.com/meta-rust/meta-rust.git
+    url: https://github.com/meta-rust/meta-rust
     refspec: master
 
   meta-python2:
     url: https://git.openembedded.org/meta-python2
     refspec: gatesgarth
+
+  meta-aws:
+    url: https://github.com/aws/meta-aws
+    refspec: gatesgarth
+  
+  meta-java:
+    url: https://git.yoctoproject.org/git/meta-java
+    refspect: gatesgarth
 
   meta-demos:
     url: ./meta-demos
