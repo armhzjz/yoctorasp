@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=6c85ef3aa8c072d95e1dfb3e55ccf8
 
 SRC_URI = " \
            file://LICENSE \
+           file://session \
            "
 
 # Modify these as desired
