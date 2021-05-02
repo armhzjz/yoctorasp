@@ -1,0 +1,87 @@
+header:
+  version: 8
+
+machine: raspberrypi3-64
+distro: ml-hzjz
+target:
+  - sample-greengrassv1
+
+repos:
+  poky:
+    url: https://git.yoctoproject.org/git/poky
+    refspec: gatesgarth
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    refspec: gatesgarth
+    layers:
+      meta-oe:
+      meta-multimedia:
+      meta-networking:
+      meta-python:
+      meta-perl:
+
+  meta-raspberrypi:
+    url: https://github.com/agherzan/meta-raspberrypi
+    refspec: gatesgarth
+  
+  meta-aws:
+    url: https://github.com/aws/meta-aws
+    refspec: gatesgarth
+  
+  meta-java:
+    url: https://git.yoctoproject.org/git/meta-java
+    refspec: gatesgarth
+
+  meta-demos:
+    url: ./meta-demos
+
+
+bblayers_conf_header:
+  standard: |
+    POKY_BBLAYERS_CONF_VERSION = "2"
+    BBPATH = "${TOPDIR}"
+    BBFILES ?= ""
+
+local_conf_header:
+  standard: |
+    CONF_VERSION = "1"
+    USER_CLASSES = "buildstats image-mklibs image-prelink"
+    PATCHRESOLVE = "noop"
+    # RPI configurations
+    DISABLE_RPI_BOOT_LOGO = "1"
+    DISABLE_SPLASH = "1"
+  rpi_extra_configuration: |
+    RPI_EXTRA_CONFIG = '\n\
+    # Raspberry Pi 7\" display/touch screen\n \
+    lcd_rotate=2\n \
+    '
+  bb_diskmonitoring_dirs: |
+    BB_DISKMON_DIRS ??= "\
+        STOPTASKS,${TMPDIR},1G,100K \
+        STOPTASKS,${DL_DIR},1G,100K \
+        STOPTASKS,${SSTATE_DIR},1G,100K \
+        STOPTASKS,/tmp,100M,100K \
+        ABORT,${TMPDIR},100M,1K \
+        ABORT,${DL_DIR},100M,1K \
+        ABORT,${SSTATE_DIR},100M,1K \
+        ABORT,/tmp,10M,1K"
+  downloads_and_sstate: |
+    DL_DIR = "/workdir/yocto/downloads"
+    SSTATE_DIR = "/workdir/yocto/sstate-cache"
+  Masks: |
+    BBMASK += "chromium-x11"
+  java_configuration: |
+    BBMASK += "openjdk-7_99b00-2.6.5.bb"
+    # Ideally this yhould be defined in a distro include file
+    PREFERRED_PROVIDER_virtual/java-initial-native = "cacao-initial-native"
+    PREFERRED_PROVIDER_virtual/java-native = "jamvm-native"
+    PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
+    PREFERRED_PROVIDER_java2-runtime = " openjdk-8-jre"
+  aws configuration: |
+    PREFERRED_VERSION_greengrass = "1.11.0"
+    GG_KERNEL_MOD = "1"
