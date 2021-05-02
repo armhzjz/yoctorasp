@@ -4,7 +4,7 @@ header:
 machine: raspberrypi3-64
 distro: ml-hzjz
 target:
-  - sample-application
+  - sample-greengrassv1
 
 repos:
   poky:
@@ -82,5 +82,6 @@ local_conf_header:
     PREFERRED_PROVIDER_virtual/java-native = "jamvm-native"
     PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
     PREFERRED_PROVIDER_java2-runtime = " openjdk-8-jre"
-    # append openjdk-8 to your image
-    IMAGE_INSTALL_append = " openjdk-8"
+  aws configuration: |
+    PREFERRED_VERSION_greengrass = "1.11.0"
+    GG_KERNEL_MOD = "1"
