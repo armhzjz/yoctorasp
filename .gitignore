@@ -5,4 +5,10 @@ meta-raspberrypi/
 meta-raspidev/
 poky/
 yocto/
-
+meta-aws/
+meta-java/
+meta-browser/
+meta-clang/
+meta-python2/
+meta-rust/
+meta-clang/
