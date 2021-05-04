@@ -82,6 +82,13 @@ local_conf_header:
     PREFERRED_PROVIDER_virtual/java-native = "jamvm-native"
     PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
     PREFERRED_PROVIDER_java2-runtime = " openjdk-8-jre"
-  aws configuration: |
+  aws_configuration: |
     PREFERRED_VERSION_greengrass = "1.11.0"
     GG_KERNEL_MOD = "1"
+  extra_development_packages: |
+    EXTRA_IMAGE_FEATURES_append = " \
+                                   ssh-server-dropbear \
+                                  "
+    IMAGE_INSTALL_append = " \
+                            htop \
+                           "

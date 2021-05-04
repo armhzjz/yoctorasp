@@ -11,7 +11,6 @@ IMAGE_INSTALL_append = " \
                         "
 SYSTEMD_DEFAULT_TARGET="graphical.target"
 IMAGE_FEATURES_append = " \
-			ssh-server-dropbear \
                         ${EXTRA_IMAGE_FEATURES} \
                          "
 
