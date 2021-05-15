@@ -12,3 +12,4 @@ meta-clang/
 meta-python2/
 meta-rust/
 meta-clang/
+meta-virtualization/
