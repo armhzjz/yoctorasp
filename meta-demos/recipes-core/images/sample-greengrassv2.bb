@@ -18,7 +18,7 @@ RPI_NET =    "i2c-tools                              \
               python3-smbus                          \
               bridge-utils                           \
               hostapd                                \
-              dhcp-server                            \
+              dhcpcd	                             \
               iptables                               \
               wpa-supplicant                         \
               "

@@ -73,6 +73,8 @@ local_conf_header:
     SSTATE_DIR = "/workdir/yocto/sstate-cache"
   Masks: |
     BBMASK += "chromium-x11"
+  aws_configuration: |
+    DISTRO_FEATURES_append = " virtualization"
   extra_development_packages: |
     IMAGE_INSTALL_append = " \
                             htop \
