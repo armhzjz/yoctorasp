@@ -13,17 +13,15 @@ repos:
     layers:
       meta:
       meta-poky:
-      meta-yocto-bsp:
 
   meta-openembedded:
     url: https://git.openembedded.org/meta-openembedded
     refspec: gatesgarth
     layers:
       meta-oe:
-      meta-multimedia:
       meta-networking:
       meta-python:
-      meta-perl:
+      meta-filesystems:
 
   meta-raspberrypi:
     url: https://github.com/agherzan/meta-raspberrypi
@@ -33,8 +31,8 @@ repos:
     url: https://github.com/aws/meta-aws
     refspec: gatesgarth
   
-  meta-java:
-    url: https://git.yoctoproject.org/git/meta-java
+  meta-virtualization:
+    url: https://git.yoctoproject.org/git/meta-virtualization
     refspec: gatesgarth
 
   meta-demos:

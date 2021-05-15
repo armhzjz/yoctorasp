@@ -3,15 +3,38 @@ LICENSE = "MIT"
 
 inherit core-image extrausers
 
+AWS_IOT_GG = "greengrass                             \
+              ntp                                    \
+              docker                                 \
+              python3-docker-compose                 \
+              "
+
+RPI_WIFI =   "crda                                   \
+              iw                                     \
+              wpa-supplicant                         \
+              "
+
+RPI_NET =    "i2c-tools                              \
+              python3-smbus                          \
+              bridge-utils                           \
+              hostapd                                \
+              dhcp-server                            \
+              iptables                               \
+              wpa-supplicant                         \
+              "
+
 IMAGE_INSTALL_append = " \
-                        packagegroup-demos-x11-minibase \
-                        linux-firmware-rpidistro-bcm43430 \
-			openjdk-8 \
-			greengrass-bin \
+                        packagegroup-demos-x11-minibase     \
+                        linux-firmware-rpidistro-bcm43430   \
+                        ${AWS_IOT_GG}                       \
+                        ${RPI_WIFI}                         \
+                        ${RPI_NET}                          \
                         "
+
 SYSTEMD_DEFAULT_TARGET="graphical.target"
 IMAGE_FEATURES_append = " \
-                        ${EXTRA_IMAGE_FEATURES} \
+                        ${EXTRA_IMAGE_FEATURES}         \
+                        ssh-server-dropbear             \
                          "
 
 IMAGE_FEATURES_remove = "allow-empty-password empty-root-password"
