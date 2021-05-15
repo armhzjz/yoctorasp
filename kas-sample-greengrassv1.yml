@@ -76,6 +76,7 @@ local_conf_header:
   aws_configuration: |
     PREFERRED_VERSION_greengrass = "1.11.0"
     GG_KERNEL_MOD = "1"
+    DISTRO_FEATURES_append = " virtualization"
   extra_development_packages: |
     IMAGE_INSTALL_append = " \
                             htop \

@@ -18,7 +18,7 @@ RPI_NET =    "i2c-tools                              \
               python3-smbus                          \
               bridge-utils                           \
               hostapd                                \
-              dhcp-server                            \
+	      dhcpcd				     \
               iptables                               \
               wpa-supplicant                         \
               "
@@ -36,7 +36,6 @@ IMAGE_FEATURES_append = " \
                         ${EXTRA_IMAGE_FEATURES}         \
                         ssh-server-dropbear             \
                          "
-
 IMAGE_FEATURES_remove = "allow-empty-password empty-root-password"
 
 # EXTRA_USERS_PARAMS = "usermod -p `openssl passwd -salt "WG" sldkfjgh` root;"
