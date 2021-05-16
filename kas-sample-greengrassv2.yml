@@ -34,6 +34,9 @@ repos:
       awscli-patch:
         repo: meta-aws
         path: ../patches/add_awscli_to_meta-aws_gatesgarth.diff
+      jmespath_patch:
+        repo: meta-aws
+        path: ../patches/fix_SRC_URI_and_LIC_FILES_CHKSUM_vals.diff
   
   meta-virtualization:
     url: https://git.yoctoproject.org/git/meta-virtualization
