@@ -29,7 +29,7 @@ repos:
   
   meta-aws:
     url: https://github.com/aws/meta-aws
-    refspec: gatesgarth
+    refspec: 4a30e259618c2ae32478c9bb50f131509a8cc97d
   
   meta-virtualization:
     url: https://git.yoctoproject.org/git/meta-virtualization
