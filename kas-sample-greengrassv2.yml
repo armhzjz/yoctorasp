@@ -30,6 +30,10 @@ repos:
   meta-aws:
     url: https://github.com/aws/meta-aws
     refspec: gatesgarth
+    patches:
+      awscli-patch:
+        repo: meta-aws
+        path: ../patches/add_awscli_to_meta-aws_gatesgarth.diff
   
   meta-virtualization:
     url: https://git.yoctoproject.org/git/meta-virtualization
@@ -75,6 +79,7 @@ local_conf_header:
     BBMASK += "chromium-x11"
   aws_configuration: |
     DISTRO_FEATURES_append = " virtualization"
+    IMAGE_INSTALL_append = " awscli"
   extra_development_packages: |
     IMAGE_INSTALL_append = " \
                             htop \
