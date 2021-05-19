@@ -35,6 +35,10 @@ repos:
     url: https://git.yoctoproject.org/git/meta-virtualization
     refspec: gatesgarth
 
+  meta-java:
+    url: https://git.yoctoproject.org/git/meta-java
+    refspec: gatesgarth
+
   meta-demos:
     url: ./meta-demos
 
@@ -77,6 +81,13 @@ local_conf_header:
     PREFERRED_VERSION_greengrass = "1.11.0"
     GG_KERNEL_MOD = "1"
     DISTRO_FEATURES_append = " virtualization"
+  java_configuration: |
+    BBMASK += "openjdk-7_99b00-2.6.5.bb"
+    # Ideally this should be defined in a distro include file
+    PREFERRED_PROVIDER_virtual/java-initial-native = "cacao-initial-native"
+    PREFERRED_PROVIDER_virtual/java-native = "jamvm-native"
+    PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
+    PREFERRED_PROVIDER_java2-runtime = " openjdk-8-jre"
   extra_development_packages: |
     IMAGE_INSTALL_append = " \
                             htop \

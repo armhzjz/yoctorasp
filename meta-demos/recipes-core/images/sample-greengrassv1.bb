@@ -26,6 +26,7 @@ RPI_NET =    "i2c-tools                              \
 IMAGE_INSTALL_append = " \
                         packagegroup-demos-x11-minibase     \
                         linux-firmware-rpidistro-bcm43430   \
+                        openjdk-8                           \
                         ${AWS_IOT_GG}                       \
                         ${RPI_WIFI}                         \
                         ${RPI_NET}                          \
