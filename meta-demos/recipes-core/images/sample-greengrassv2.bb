@@ -43,4 +43,8 @@ IMAGE_FEATURES_append = " \
 IMAGE_FEATURES_remove = "allow-empty-password empty-root-password"
 
 # EXTRA_USERS_PARAMS = "usermod -p `openssl passwd -salt "WG" sldkfjgh` root;"
-EXTRA_USERS_PARAMS = "usermod -p WGWP2ElxIb6ZY root; useradd -p `openssl passwd -salt "WG" ivyopwer` pfol;"
+EXTRA_USERS_PARAMS = " \
+	usermod -p WGWP2ElxIb6ZY root; \
+	useradd -p `openssl passwd -salt "WG" ivyopwer` pfol; \
+	usermod -a -G docker pfol; \
+	"
