@@ -97,4 +97,5 @@ local_conf_header:
   extra_development_packages: |
     IMAGE_INSTALL_append = " \
                             htop \
+                            python3-pip \
                            "
