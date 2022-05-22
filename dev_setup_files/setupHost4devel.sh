@@ -80,6 +80,6 @@ bash /etc/rc.d/rc.dnsmasq start
 if [ ! -d ${HOME}/bin ]; then
     mkdir -p ${HOME}/bin
 fi
-cp ${SCRIPT_DIR}/shutdown_task.sh /home/eindemwort/bin/shutdown_task.sh
+cp ${SCRIPT_DIR}/shutdown_task.sh /home/eindemwort/binowns/shutdown_task.sh
 chmod 100 /home/eindemwort/bin/shutdown_task.sh
 chown 1000:100 /home/eindemwort/bin/shutdown_task.sh
