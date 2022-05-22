@@ -40,7 +40,7 @@ repos:
     refspec: gatesgarth
 
   meta-demos:
-    url: ./meta-demos
+    path: ./meta-demos
 
 
 bblayers_conf_header:
@@ -73,8 +73,8 @@ local_conf_header:
         ABORT,${SSTATE_DIR},100M,1K \
         ABORT,/tmp,10M,1K"
   downloads_and_sstate: |
-    DL_DIR = "/workdir/yocto/downloads"
-    SSTATE_DIR = "/workdir/yocto/sstate-cache"
+    DL_DIR = "/workspaces/yoctorasp/yocto/downloads"
+    SSTATE_DIR = "/workspaces/yoctorasp/yocto/sstate-cache"
   Masks: |
     BBMASK += "chromium-x11"
   aws_configuration: |
