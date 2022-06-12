@@ -9,14 +9,14 @@ target:
 repos:
   poky:
     url: https://git.yoctoproject.org/git/poky
-    refspec: gatesgarth
+    refspec: kirkstone
     layers:
       meta:
       meta-poky:
 
   meta-openembedded:
     url: https://git.openembedded.org/meta-openembedded
-    refspec: gatesgarth
+    refspec: kirkstone
     layers:
       meta-oe:
       meta-networking:
@@ -25,7 +25,7 @@ repos:
 
   meta-raspberrypi:
     url: https://github.com/agherzan/meta-raspberrypi
-    refspec: gatesgarth
+    refspec: kirkstone
   
   meta-aws:
     url: https://github.com/aws/meta-aws
@@ -40,11 +40,11 @@ repos:
   
   meta-virtualization:
     url: https://git.yoctoproject.org/git/meta-virtualization
-    refspec: gatesgarth
+    refspec: kirkstone
 
   meta-java:
     url: https://git.yoctoproject.org/git/meta-java
-    refspec: gatesgarth
+    refspec: kirkstone
 
   meta-demos:
     path: ./meta-demos

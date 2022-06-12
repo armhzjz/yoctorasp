@@ -4,7 +4,7 @@ header:
 repos:
   meta-python2:
     url: https://git.openembedded.org/meta-python2
-    refspec: gatesgarth
+    refspec: kirkstone
 
 
 local_conf_header:

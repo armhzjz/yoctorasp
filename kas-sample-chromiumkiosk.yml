@@ -9,7 +9,7 @@ target:
 repos:
   poky:
     url: https://git.yoctoproject.org/git/poky
-    refspec: gatesgarth
+    refspec: kirkstone
     layers:
       meta:
       meta-poky:
@@ -17,7 +17,7 @@ repos:
 
   meta-openembedded:
     url: https://git.openembedded.org/meta-openembedded
-    refspec: gatesgarth
+    refspec: kirkstone
     layers:
       meta-oe:
       meta-multimedia:
@@ -27,7 +27,7 @@ repos:
 
   meta-raspberrypi:
     url: https://github.com/agherzan/meta-raspberrypi
-    refspec: gatesgarth
+    refspec: kirkstone
   
   meta-browser:
     url: https://github.com/OSSystems/meta-browser
@@ -37,7 +37,7 @@ repos:
 
   meta-clang:
     url: https://github.com/kraj/meta-clang
-    refspec: gatesgarth
+    refspec: kirkstone
 
   meta-rust:
     url: https://github.com/meta-rust/meta-rust
@@ -45,7 +45,7 @@ repos:
 
   meta-python2:
     url: https://git.openembedded.org/meta-python2
-    refspec: gatesgarth
+    refspec: kirkstone
 
   meta-demos:
     path: ./meta-demos
