@@ -16,4 +16,4 @@ local_conf_header:
     ### uart
     ENABLE_UART = "1"
     ### usefull packages on during development
-    IMAGE_INSTALL_append = " systemd-analyze htop"
+    IMAGE_INSTALL:append = " systemd-analyze htop"

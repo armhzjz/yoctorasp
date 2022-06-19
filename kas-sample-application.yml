@@ -41,8 +41,8 @@ bblayers_conf_header:
 
 local_conf_header:
   standard: |
-    CONF_VERSION = "1"
-    USER_CLASSES = "buildstats image-mklibs image-prelink"
+    CONF_VERSION = "2"
+    USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
     # RPI configurations
     DISABLE_RPI_BOOT_LOGO = "1"

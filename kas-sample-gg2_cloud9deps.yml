@@ -9,7 +9,7 @@ repos:
 
 local_conf_header:
   cloud9_deps: |
-    IMAGE_INSTALL_append = " \
+    IMAGE_INSTALL:append = " \
                             python \
                             python-pip \
                            "

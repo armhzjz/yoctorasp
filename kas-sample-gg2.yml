@@ -58,8 +58,8 @@ bblayers_conf_header:
 
 local_conf_header:
   standard: |
-    CONF_VERSION = "1"
-    USER_CLASSES = "buildstats image-mklibs image-prelink"
+    CONF_VERSION = "2"
+    USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
     # RPI configurations
     DISABLE_RPI_BOOT_LOGO = "1"
@@ -85,8 +85,8 @@ local_conf_header:
   Masks: |
     BBMASK += "chromium-x11"
   aws_configuration: |
-    DISTRO_FEATURES_append = " virtualization"
-    IMAGE_INSTALL_append = " awscli"
+    DISTRO_FEATURES:append = " virtualization"
+    IMAGE_INSTALL:append = " awscli"
   java_configuration: |
     BBMASK += "openjdk-7_99b00-2.6.5.bb"
     # Ideally this yhould be defined in a distro include file
@@ -95,7 +95,7 @@ local_conf_header:
     PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
     PREFERRED_PROVIDER_java2-runtime = " openjdk-8-jre"
   extra_development_packages: |
-    IMAGE_INSTALL_append = " \
+    IMAGE_INSTALL:append = " \
                             htop \
                             python3-pip \
                            "

@@ -23,7 +23,7 @@ RPI_NET =    "i2c-tools                              \
               wpa-supplicant                         \
               "
 
-IMAGE_INSTALL_append = " \
+IMAGE_INSTALL:append = " \
                         packagegroup-demos-x11-minibase     \
                         linux-firmware-rpidistro-bcm43430   \
                         openjdk-8                           \
@@ -35,12 +35,12 @@ IMAGE_INSTALL_append = " \
 
 SYSTEMD_DEFAULT_TARGET="graphical.target"
 DISTRO_FEATURES += "virtualization"
-IMAGE_FEATURES_append = " \
+IMAGE_FEATURES:append = " \
                         ${EXTRA_IMAGE_FEATURES}         \
                         ssh-server-dropbear             \
                          "
 
-IMAGE_FEATURES_remove = "allow-empty-password empty-root-password"
+IMAGE_FEATURES:remove = "allow-empty-password empty-root-password"
 
 # EXTRA_USERS_PARAMS = "usermod -p `openssl passwd -salt "WG" sldkfjgh` root;"
 EXTRA_USERS_PARAMS = " \

@@ -14,7 +14,7 @@ PV = "0.1"
 
 S = "${WORKDIR}"
 
-do_install_append() {
+do_install:append() {
     install -d ${D}${sysconfdir}/mini_x
     install -m 0755 ${WORKDIR}/session ${D}${sysconfdir}/mini_x/
 }
