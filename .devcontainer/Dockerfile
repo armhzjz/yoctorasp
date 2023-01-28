@@ -64,3 +64,4 @@ USER builder
 # Install fuzzy finder
 RUN     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 RUN     cd ~/.fzf && ./install
+RUN     export USER=builder
