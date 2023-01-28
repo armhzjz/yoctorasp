@@ -1,0 +1,1 @@
+devtool modify -w vim`, `bitbake vim` and `devtool deploy-target vim <IP address>
