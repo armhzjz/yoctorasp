@@ -3,6 +3,9 @@
 {
 	"name": "${localWorkspaceFolderBasename}",
 
+    "initializeCommand":
+        "printf \"UID=%s\nGID=%s\n\" $(id -u) $(id -g) > ./.env",
+
 	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
 	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
 	"dockerComposeFile": [
@@ -74,9 +77,9 @@
                 //"ms-vscode.cpptools-extension-pack"
             ]
         }
-    }
+    },
     // Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "cat /etc/os-release",
+	"postCreateCommand": "rm .env && chown -R builder:builder yocto"
 
 	// Configure tool-specific properties.
 

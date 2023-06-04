@@ -2,10 +2,12 @@ FROM    crops/poky:ubuntu-22.04 AS dev
 # swtich to root user to install additional packages
 USER    root
 # create a non-root user
+ARG     UID
+ARG     GID
 ARG     USERNAME=builder
-ARG     GROUPNAME=build
-ARG     USER_UID=1000
-ARG     USER_GID=1000
+ARG     GROUPNAME=${USERNAME}
+ARG     USER_UID=${UID}
+ARG     USER_GID=${GID}
 RUN     set -x && \
         groupadd \
                 --gid ${USER_GID} \

@@ -8,17 +8,14 @@ services:
     build:
       context: ./images/
       args:
-        - no_proxy
-        - http_proxy
-        - https_proxy
+        UID: ${UID}
+        GID: ${GID}
       network: host
       target: dev
     volumes:
       - ~/.ssh/:/home/builder/.ssh/
       - .:/workspaces/yoctorasp/:cached
-      - type: volume
-        source: yoctoartifacts
-        target: /workspaces/yoctorasp/yocto
+      - yoctoartifacts:/workspaces/yoctorasp/yocto/:rw
     working_dir: /workspaces/yoctorasp/
 
   shellcheck:
