@@ -15,24 +15,24 @@ services:
       target: dev
     volumes:
       - ~/.ssh/:/home/builder/.ssh/
-      - .:/workspaces/yocto/:cached
+      - .:/workspaces/yoctorasp/:cached
       - type: volume
         source: yoctoartifacts
-        target: /home/builder/yocto
-    working_dir: /workspaces/yocto/
+        target: /workspaces/yoctorasp/yocto
+    working_dir: /workspaces/yoctorasp/
 
   shellcheck:
     image: koalaman/shellcheck:v0.7.2
     volumes:
-      - .:/workspaces/yocto/
-    working_dir: /workspaces/yocto/
+      - .:/workspaces/yoctorasp/
+    working_dir: /workspaces/yoctorasp/
 
   container-structure-test:
     image: gcr.io/gcp-runtimes/container-structure-test:latest
     volumes:
       - .:/workspaces/yocto-project/
       - /var/run/docker.sock:/var/runt/docker.sock
-    working_dir: /workspaces/yocto/
+    working_dir: /workspaces/yoctorasp/
 
   docs:
     build:
