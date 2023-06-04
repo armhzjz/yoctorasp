@@ -1,0 +1,6 @@
+# Disallow root logins by default
+
+################################################
+# Allow root logins while working on the image #
+################################################
+# DROPBEAR_EXTRA_ARGS="-w"
