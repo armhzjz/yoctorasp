@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  dev:
+    # privileged: true
+    image: yocto.b:0.1.0
+    user: builder
+    build:
+      context: ./images/
+      args:
+        - no_proxy
+        - http_proxy
+        - https_proxy
+      network: host
+      target: dev
+    volumes:
+      - ~/.ssh/:/home/builder/.ssh/
+      - .:/workspaces/yocto/:cached
+      - type: volume
+        source: yoctoartifacts
+        target: /home/builder/yocto
+    working_dir: /workspaces/yocto/
+
+  shellcheck:
+    image: koalaman/shellcheck:v0.7.2
+    volumes:
+      - .:/workspaces/yocto/
+    working_dir: /workspaces/yocto/
+
+  container-structure-test:
+    image: gcr.io/gcp-runtimes/container-structure-test:latest
+    volumes:
+      - .:/workspaces/yocto-project/
+      - /var/run/docker.sock:/var/runt/docker.sock
+    working_dir: /workspaces/yocto/
+
+  docs:
+    build:
+      context: ./images/
+      target: DOCS
+      dockerfile: docs.Dockerfile
+    working_dir: /docs/
+    volumes:
+      - ./docs/:/docs/
+volumes:
+  yoctoartifacts:
+    name: "yoctoartifacts"
