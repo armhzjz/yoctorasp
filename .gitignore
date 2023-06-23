@@ -14,3 +14,4 @@ meta-rust/
 meta-clang/
 meta-virtualization/
 .vscode/
+.env
