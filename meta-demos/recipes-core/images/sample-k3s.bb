@@ -3,7 +3,7 @@ LICENSE = "MIT"
 
 inherit core-image extrausers
 
-CORE_IMAGE_EXTRA_INSTALL:append " packagegroup-k3s-node kernel-modules"
+CORE_IMAGE_EXTRA_INSTALL:append = " packagegroup-k3s-node kernel-modules"
 
 IMAGE_INSTALL:append = " \
                         packagegroup-demos-x11-minibase \
