@@ -15,7 +15,7 @@ services:
     volumes:
       - ~/.ssh/:/home/builder/.ssh/
       - .:/workspaces/yoctorasp/:cached
-      - yoctoartifacts:/workspaces/yoctorasp/yocto/:rw
+      - yoctoartifacts:/yocto_dirs/:rw
     working_dir: /workspaces/yoctorasp/
 
   shellcheck:

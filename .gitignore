@@ -13,5 +13,6 @@ meta-python2/
 meta-rust/
 meta-clang/
 meta-virtualization/
+meta-security/
 .vscode/
 .env

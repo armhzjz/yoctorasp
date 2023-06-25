@@ -30,6 +30,8 @@ RUN     set -x && \
         apt clean && \
         rm -rf /var/lib/apt/lists/* && \
         :
+RUN     mkdir -p /yocto_dirs
+RUN     chown ${USERNAME}:${GROUPNAME} /yocto_dirs
 # Switch to the non-root user
 USER    ${USERNAME}
 # Enable all aliases already defined in .bashrc
@@ -65,6 +67,7 @@ RUN     set -x && \
                 libncursesw5-dev \
                 python3 \
                 python3-pip \
+                nodejs \
                 && \
         sudo --preserve-env apt clean && \
         sudo --preserve-env rm -fr /var/lib/apt/lists/* && \
